@@ -1,0 +1,14 @@
+# Runtime / secrets
+**/secrets/
+**/runtime/
+**/artifacts/
+**/.edge-profile/
+**/tunnel-profile.yaml
+**/tunnel-client*/
+**/.venv/
+**/__pycache__/
+**/capture_deps/
+*.pid
+*.log
+.env
+.env.*

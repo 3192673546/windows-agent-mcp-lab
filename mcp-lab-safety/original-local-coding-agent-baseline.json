@@ -1,0 +1,32 @@
+[
+  {
+    "path": "C:\\mcp\\chatgpt\\local-coding-agent\\server.py",
+    "length": 38281,
+    "lastWriteTimeUtc": "2026-09-08T14:40:47.9751158Z",
+    "sha256": "FF53712DE962824582642435146094A853B09AB2833798812D70F60351A569B4"
+  },
+  {
+    "path": "C:\\mcp\\chatgpt\\local-coding-agent\\requirements.txt",
+    "length": 29,
+    "lastWriteTimeUtc": "2026-09-08T14:42:09.0624412Z",
+    "sha256": "D8563DD4A4632B5065728B3EBCA4C3C4B0935FE0F584E2434BC29F0CE5D9438C"
+  },
+  {
+    "path": "C:\\mcp\\chatgpt\\local-coding-agent\\start-chatgpt-local-coding-agent.cmd",
+    "length": 132,
+    "lastWriteTimeUtc": "2026-09-08T17:38:01.3279470Z",
+    "sha256": "9975479DAA2498715EBA444E1CE7EB857A3757B4DE4D602F8EC47153EF17080E"
+  },
+  {
+    "path": "C:\\Users\\Administrator\\AppData\\Roaming\\tunnel-client\\powershell.yaml",
+    "length": 772,
+    "lastWriteTimeUtc": "2026-09-08T17:56:58.9734300Z",
+    "sha256": "F1C6A903AB3437B4E999E1293AE7CBB20CC5C3D1E3AC25A01CF9FC1D6D810E91"
+  },
+  {
+    "path": "C:\\mcp\\chatgpt\\local-coding-agent\\secrets\\openai-tunnel-key.txt",
+    "length": 164,
+    "lastWriteTimeUtc": "2026-09-08T13:14:56.9568268Z",
+    "sha256": "C5DF42A8E772B4AACFCE0485AD274E7DCCCB4683E3D3C3D03598122C3AF4E7CC"
+  }
+]
