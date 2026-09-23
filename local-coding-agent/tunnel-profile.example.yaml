@@ -1,0 +1,21 @@
+# Copy to tunnel-profile.yaml (git-ignored) and replace every <...> placeholder.
+# <LAB_DIR> is the absolute path of this folder, written with forward slashes,
+# e.g. D:/mcp/windows-agent-mcp-lab/local-coding-agent
+# start-local-coding-agent.ps1 polls the fixed health port below (8081).
+config_version: 1
+control_plane:
+  base_url: "https://api.openai.com"
+  tunnel_id: "<tunnel_ID>"
+  # The Runtime API key stays in secrets/ (git-ignored); only its path is referenced here.
+  api_key: "file:<LAB_DIR>/secrets/openai-tunnel-key.txt"
+health:
+  listen_addr: "127.0.0.1:8081"
+admin_ui:
+  open_browser: false
+log:
+  level: info
+  format: json
+mcp:
+  commands:
+    - channel: main
+      command: '"<LAB_DIR>/.venv/Scripts/python.exe" "<LAB_DIR>/server.py"'

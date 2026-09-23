@@ -52,6 +52,16 @@
 - 回归 stale state、错误传播、进程状态、工具 schema 等关键路径。
 - 避免“工具调用成功 = 任务成功”的假阳性，强调最终状态验证。
 
+### 5. ChatGPT 连接器接入
+
+**OpenAI Secure MCP Tunnel · PowerShell · Windows 进程管理**
+
+把上面的 MCP 服务，以及两个第三方 MCP 服务（CursorTouch Windows-MCP、browser-use browser-harness），通过 OpenAI 官方 `tunnel-client` 注册为 ChatGPT 连接器。详见 [`chatgpt-tunnel/`](chatgpt-tunnel/)。
+
+- 服务只监听 `127.0.0.1`，隧道只建立出站连接；配置文件只写 `file:` / `env:` 形式的密钥引用。
+- 启动脚本在端口监听或 `/readyz` 就绪之后才报告成功；停止脚本先核对 PID 属于本服务，再结束整个进程树。
+- 第三方项目只提供接入脚本，不包含上游源码。
+
 ## 设计原则
 
 1. **Observe → Act → Verify**：任何写操作都必须基于新鲜观察，动作之后重新确认状态。
@@ -78,6 +88,8 @@ python -X utf8 test_server.py
 
 整理发布前，本机结果：Browser MCP 12/12 self-test 通过，Computer Use MCP 8/8 self-test 通过，Local Coding Agent 测试通过。
 
+> Local Coding Agent 优先使用 PowerShell 7（`pwsh`）执行命令。如果只有 Windows PowerShell 5.1，38 项测试中有 4 项会失败（`python_unicode`、`pipe_interactive_input`、`conpty_interaction`、`kill_process_tree`），原因是 5.1 向原生程序传参时会丢掉内嵌的双引号。
+
 ## 安全说明
 
 公开仓库不包含：
@@ -85,8 +97,8 @@ python -X utf8 test_server.py
 - API Token / Cookie / 登录凭据
 - `secrets/`、运行态 `runtime/`、截图/测试产物 `artifacts/`
 - 浏览器用户 Profile
-- Tunnel 配置与本地连接凭据
-- Python 虚拟环境、依赖缓存和二进制运行文件
+- 真实的 Tunnel ID、Runtime API Key，以及生成的 tunnel profile（仓库只提供 `tunnel-profile.example.yaml` 模板）
+- Python 虚拟环境、依赖缓存和二进制运行文件（包括 `tunnel-client`）
 
 这些内容只存在于本地运行环境中。
 
@@ -96,6 +108,8 @@ python -X utf8 test_server.py
 <summary><b>English summary</b></summary>
 
 A Windows-focused Agent tooling lab covering MCP browser automation, desktop Computer Use, local coding tools and protocol/safety regression tests. The projects focus on stale-state prevention, observe-act-verify workflows, fail-closed safety checks, Windows UI automation, CDP browser control, long-running process sessions and testable tool execution.
+
+`chatgpt-tunnel/` holds the scripts that expose these servers — plus the third-party CursorTouch Windows-MCP and browser-use browser-harness — to ChatGPT Connectors through OpenAI's Secure MCP Tunnel, with loopback-only servers, secret references instead of inline keys, and PID-verified process-tree shutdown.
 
 `local-coding-agent/openai_apply_diff.py` is derived unchanged from OpenAI Agents SDK 0.22.2 and distributed under its MIT license. Other lab code and integrations are presented as local experimental implementations.
 

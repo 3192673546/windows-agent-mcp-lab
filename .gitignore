@@ -4,7 +4,13 @@
 **/artifacts/
 **/.edge-profile/
 **/tunnel-profile.yaml
+**/tunnel-profile/
+**/tunnel-id.txt
 **/tunnel-client*/
+**/state/
+**/logs/
+**/.runtime/
+*.before-migration
 **/.venv/
 **/__pycache__/
 **/capture_deps/

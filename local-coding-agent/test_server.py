@@ -25,7 +25,7 @@ def ps_python(code):
 class Tests(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory(prefix='coding-agent-test-')
-        self.root = Path(self.tmp.name)
+        self.root = Path(self.tmp.name).resolve()
         self.previous = m._workspace
         m._workspace = self.root
         self.settings_patch = patch.object(m, '_instruction_settings', return_value=(self.root/'global', ['AGENTS.override.md', 'AGENTS.md'], 32768))

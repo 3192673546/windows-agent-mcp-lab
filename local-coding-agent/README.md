@@ -52,4 +52,15 @@
 
 本机存在 Codex CLI 时，测试还会将四个定位/多片段案例与该二进制的实际补丁结果比较。该内部启动参数仅用于测试，不是生产依赖。没有本机 Codex 时该对照测试会显示跳过。
 
+命令执行优先使用 PowerShell 7（`pwsh`）。只有 Windows PowerShell 5.1 时，涉及原生命令内嵌双引号的 4 项测试会失败，因为 5.1 传参时会丢掉这些引号。
+
+## 接入 ChatGPT
+
+1. 复制 `tunnel-profile.example.yaml` 为 `tunnel-profile.yaml`，按注释替换 `<...>` 占位符。
+2. 把 Runtime API Key 保存到 `secrets\openai-tunnel-key.txt`。`secrets/` 和 `tunnel-profile.yaml` 都已被 git 忽略。
+3. 双击 `start-chatgpt-local-coding-agent.cmd`，隧道在后台运行，`http://127.0.0.1:8081/readyz` 就绪后才报告成功，日志写入 `.runtime\`。
+4. 用 `status-local-coding-agent.ps1` 查看状态，用 `stop-local-coding-agent.ps1` 停止。停止前会核对 PID 属于本项目的 tunnel-client，再结束整个进程树。
+
+tunnel-client 的获取与校验见 [`../chatgpt-tunnel/README.md`](../chatgpt-tunnel/README.md)。
+
 重新启动原隧道后旧调用方式仍可使用；如客户端未显示新增可选参数，请刷新该连接的工具列表。
